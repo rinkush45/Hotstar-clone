@@ -6,14 +6,15 @@ const [allMovies,setAllMovies]=useState([])
 console.log(fetchUrl);
 const base_url="https://image.tmdb.org/t/p/original/"
 
-const fetchData=async()=>{
-   const {data}= await tmdbAxiosInstance.get(fetchUrl)
-   setAllMovies(data.results)
-}
+useEffect(() => {
+    const fetchData = async () => {
+        const {data}= await tmdbAxiosInstance.get(fetchUrl)
+        setAllMovies(data.results)
+    };
+    fetchData();
+}, [fetchUrl]);
+
 console.log(allMovies);
-useEffect(()=>{
-    fetchData()
-},[])
 
   return (
     <div className='row'>
